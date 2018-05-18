@@ -20,6 +20,8 @@ class Logic
       continue = false
     elsif user_menu_input == "q" || user_menu_input == "quit"
       exit
+    else
+      continue = false
     end
   end
 
