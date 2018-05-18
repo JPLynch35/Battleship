@@ -1,5 +1,4 @@
-class Text
-
+module Text
   def welcome_screen
     puts(
       "Welcome to BATTLESHIP\n\n
@@ -27,5 +26,4 @@ class Text
       Enter the squares for the two-unit ship:"
     )
   end
-
 end

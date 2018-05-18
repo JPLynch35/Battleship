@@ -1,5 +1,6 @@
 class Board
-  attr_reader :current
+  attr_reader :base,
+              :current
 
   def initialize
     @base = {
@@ -18,6 +19,7 @@ class Board
       puts "==========="
   end
 
-
+  def set_ships(cell, board)
+  end
 
 end

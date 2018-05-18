@@ -1,11 +1,12 @@
 require './lib/board'
 require './lib/logic'
 require './lib/player'
-require './lib/text'
 
-logic = Logic.new
-text = Text.new
-logic.game_menu_options(text)
+include Logic
 
-p_board = Board.new
+game_menu_options
+
 c_board = Board.new
+set_2_ship(c_board)
+p_board = Board.new
+set_2_ship(p_board)
