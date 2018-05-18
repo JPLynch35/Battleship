@@ -1,24 +1,10 @@
 class Text
 
-  def game_menu_options
-    continue = false
-    while continue == false
-    puts "Welcome to BATTLESHIP\n\n
-    Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
-    user_menu_input = gets.chomp.downcase
-    continue = game_menu_choice(user_menu_input)
-    end
-  end
-
-  def game_menu_choice(user_menu_input)
-    if user_menu_input == "p" || user_menu_input == "play"
-      continue = true
-    elsif user_menu_input == "i" || user_menu_input == "instructions"
-      game_instructions
-      continue = false
-    elsif user_menu_input == "q" || user_menu_input == "quit"
-      exit
-    end
+  def welcome_screen
+    puts(
+      "Welcome to BATTLESHIP\n\n
+      Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
+    )
   end
 
   def game_instructions
