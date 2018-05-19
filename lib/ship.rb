@@ -1,11 +1,17 @@
 module Ship
-
   def create_3ship(board)
     first_cell = first_cell_for_ship(board)
     build_dir = find_build_direction(board, first_cell)
     second_cell = next_cell_for_ship(first_cell, build_dir)
     third_cell = next_cell_for_ship(second_cell, build_dir)
     [first_cell, second_cell, third_cell]
+  end
+
+  def create_2ship(board)
+    first_cell = first_cell_for_ship(board)
+    build_dir = find_build_direction(board, first_cell)
+    second_cell = next_cell_for_ship(first_cell, build_dir)
+    [first_cell, second_cell]
   end
 
   def first_cell_for_ship(board)
@@ -35,6 +41,4 @@ module Ship
       return current_cell[0] + next_cell_number.to_s
     end
   end
-
-
 end

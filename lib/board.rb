@@ -34,9 +34,23 @@ class Board
     puts "==========="
   end
 
-  def set_3ship(board, all_ship_cells)
+  def set_ship(board, all_ship_cells)
     all_ship_cells.each do |cell|
       board.grid[cell] = "S"
     end
+  end
+
+  def check_colliding(board, all_3ship_cells, all_2ship_cells)
+    loop do
+      conflict = all_2ship_cells.any? do |cell|
+        all_3ship_cells.include?(cell)
+      end
+      if conflict == true
+        all_2ship_cells = create_2ship(board)
+      else
+        break
+      end
+    end
+    return all_2ship_cells
   end
 end

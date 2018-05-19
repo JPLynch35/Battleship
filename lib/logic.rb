@@ -15,5 +15,4 @@ module Logic
       end
     end
   end
-
 end
