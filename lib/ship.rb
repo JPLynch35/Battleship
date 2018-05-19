@@ -1,11 +1,25 @@
 module Ship
-
   def create_3ship(board)
     first_cell = first_cell_for_ship(board)
     build_dir = find_build_direction(board, first_cell)
     second_cell = next_cell_for_ship(first_cell, build_dir)
     third_cell = next_cell_for_ship(second_cell, build_dir)
     [first_cell, second_cell, third_cell]
+  end
+
+  def create_2ship(board, cells_for_3ship)
+    cells_for_2ship = []
+    loop do
+      first_cell = first_cell_for_ship(board)
+      build_dir = find_build_direction(board, first_cell)
+      second_cell = next_cell_for_ship(first_cell, build_dir)
+      cells_for_2ship = [first_cell, second_cell]
+      conflict = board.check_colliding(board, cells_for_3ship, cells_for_2ship)
+      if conflict == false
+        break
+      end
+    end
+    return cells_for_2ship
   end
 
   def first_cell_for_ship(board)
@@ -35,6 +49,4 @@ module Ship
       return current_cell[0] + next_cell_number.to_s
     end
   end
-
-
 end
