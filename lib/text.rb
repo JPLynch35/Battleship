@@ -28,4 +28,8 @@ module Text
   def ship_length_error
     "Your coordinates exceed the size of the ship.  Please input new coordinates."
   end
+
+  def ship_diagonal_error
+    "Your coordinates do not indicate horizontal or vertical placement.  Please input new coordinates."
+  end
 end

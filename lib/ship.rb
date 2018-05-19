@@ -62,11 +62,19 @@ module Ship
   def check_2ship_issues_and_inform(board, endpoints)
     wrap = p_check_ship_wrap(board, endpoints)
     length = p_check_2ship_length(board, endpoints)
+    diagonal = p_check_ship_diagonal(board, endpoints)
+    valid = true
     if wrap == true
       puts ship_wrap_error
+      valid = false
     elsif length == true
       puts ship_length_error
+      valid = false
+    elsif diagonal == true
+      puts ship_diagonal_error
+      valid = false
     end
+    return valid
   end
 
   def p_check_ship_wrap(board, endpoints)
@@ -80,9 +88,22 @@ module Ship
   end
 
   def p_check_2ship_length(board, endpoints)
-
+    grid_letters = ['A', 'B', 'C', 'D']
+    if endpoints.chars[0] == endpoints.chars[-2]
+      endpoints.chars[1].to_i - endpoints.chars[-1].to_i != -1 || 1
+    elsif endpoints.chars[1] == endpoints.chars[-1]
+      grid_letters.index(endpoints.chars[0]) - grid_letters.index(endpoints.chars[-2]) != -1 || 1
+    end
   end
 
-  def p_create_2ship(board, endpoints)
+  def p_check_ship_diagonal(board, endpoints)
+    if endpoints.chars[0] == endpoints.chars[-2]
+      false
+    elsif endpoints.chars[1] == endpoints.chars[-1]
+      false
+    else
+      true
+    end
   end
+
 end
