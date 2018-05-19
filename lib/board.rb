@@ -40,10 +40,15 @@ class Board
     end
   end
 
-  def check_colliding(board, cells_for_3ship, cells_for_2ship)
+  def check_colliding(cells_for_3ship, cells_for_2ship)
       conflict = cells_for_2ship.any? do |cell|
         cells_for_3ship.include?(cell)
       end
       return conflict
+  end
+
+  def check_p_2ship_validity(board, p_cells_for_2ship)
+    conflict = false
+
   end
 end
