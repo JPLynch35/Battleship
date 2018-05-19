@@ -1,6 +1,6 @@
 class Board
   attr_reader :base,
-              :current,
+              :game_board,
               :grid_rules_3ship,
               :grid_rules_2ship
 
@@ -32,5 +32,10 @@ class Board
       puts "D #{@base['D1']} #{@base['D2']} #{@base['D3']} #{@base['D4']}"
       puts "==========="
   end
+
+  def set_3ship(board, all_ship_cells)
+    all_ship_cells
+
+
 
 end
