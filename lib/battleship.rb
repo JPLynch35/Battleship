@@ -3,10 +3,15 @@ require './lib/logic'
 require './lib/player'
 
 include Logic
+include Ship
+include Text
 
-game_menu_options
+welcome_screen
+player_menu_choice
 
 c_board = Board.new
-set_2_ship(c_board)
+cells_for_3ship = create_3ship(c_board)
+
+
 p_board = Board.new
-set_2_ship(p_board)
+create_3ship(p_board)

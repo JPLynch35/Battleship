@@ -1,6 +1,5 @@
-class Player
+module Player
 
-  def initialize
-  end
+
 
 end
