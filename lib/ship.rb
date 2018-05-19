@@ -14,7 +14,7 @@ module Ship
       build_dir = find_build_direction(board, first_cell)
       second_cell = next_cell_for_ship(first_cell, build_dir)
       cells_for_2ship = [first_cell, second_cell]
-      conflict = board.check_colliding(board, cells_for_3ship, cells_for_2ship)
+      conflict = board.check_colliding(cells_for_3ship, cells_for_2ship)
       if conflict == false
         break
       end
@@ -48,5 +48,41 @@ module Ship
       next_cell_number = current_cell[1].to_i + 1
       return current_cell[0] + next_cell_number.to_s
     end
+  end
+
+  def p_check_2ship_is_possible(board, endpoints)
+    first_cell = endpoints.chars[0]+endpoints.chars[1]
+    second_cell = endpoints.chars[-2]+endpoints.chars[-1]
+    possible_moves = board.grid_rules_2ship[first_cell]
+    possible_moves.any? do |move|
+      second_cell == next_cell_for_ship(first_cell, move)
+    end
+  end
+
+  def check_2ship_issues_and_inform(board, endpoints)
+    wrap = p_check_ship_wrap(board, endpoints)
+    length = p_check_2ship_length(board, endpoints)
+    if wrap == true
+      puts ship_wrap_error
+    elsif length == true
+      puts ship_length_error
+    end
+  end
+
+  def p_check_ship_wrap(board, endpoints)
+    test_1 = endpoints.chars.include?("A") && endpoints.chars.include?("D")
+    test_2 = endpoints.chars.include?("1") && endpoints.chars.include?("4")
+    if test_1 || test_2
+      true
+    else
+      false
+    end
+  end
+
+  def p_check_2ship_length(board, endpoints)
+
+  end
+
+  def p_create_2ship(board, endpoints)
   end
 end
