@@ -9,7 +9,7 @@ module Ship
   end
 
   def first_cell_for_ship(board)
-    board_keys = board.base.keys
+    board_keys = board.grid.keys
     start_cell = board_keys.sample
   end
 
@@ -21,18 +21,18 @@ module Ship
   def next_cell_for_ship(current_cell, build_dir)
     grid_letters = ['A', 'B', 'C', 'D']
     if build_dir == 'u'
-      letter_index = grid_letters.index(second_cell)
-      second_cell_letter = grid_letters(letter_index - 1)
-      return second_cell_letter + current_cell[1]
+      letter_index = grid_letters.index(current_cell[0])
+      next_cell_letter = grid_letters[letter_index - 1]
+      return next_cell_letter + current_cell[1]
     elsif build_dir == 'd'
-      second_cell_letter = current_cell[0].next
-      return second_cell_letter + current_cell[1]
+      next_cell_letter = current_cell[0].next
+      return next_cell_letter + current_cell[1]
     elsif build_dir == 'l'
-      second_cell_number = current_cell[1] - 1
-      return current_cell[0] + second_cell_number
+      next_cell_number = current_cell[1].to_i - 1
+      return current_cell[0] + next_cell_number.to_s
     elsif build_dir == 'r'
-      second_cell_number = current_cell[1] + 1
-      return first_cell[0] + second_cell_number
+      next_cell_number = current_cell[1].to_i + 1
+      return current_cell[0] + next_cell_number.to_s
     end
   end
 
