@@ -1,9 +1,11 @@
 require './lib/board'
 require './lib/player'
 require './lib/ship'
+require './lib/ship_validator'
 require './lib/text'
 
 include Ship
+include Ship_Validator
 include Text
 
 player = Player.new
@@ -20,8 +22,6 @@ c_board.game_board(c_board) #can delete this line, just showing computer board f
 p_board = Board.new
 p_cells_for_2ship = player.input_2ship(p_board)
 p_board.set_ship(p_board, p_cells_for_2ship)
+p_cells_for_3ship = player.input_3ship(p_board, p_cells_for_2ship)
+p_board.set_ship(p_board, p_cells_for_3ship)
 c_board.game_board(p_board) #can delete this line, just showing computer board for testing
-
-
-
-# p_board = Board.new
