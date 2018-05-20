@@ -99,10 +99,12 @@ module Ship_Validator
 
   def p_check_3ship_length(board, endpoints)
     grid_letters = ['A', 'B', 'C', 'D']
+    number_diff = endpoints.chars[1].to_i - endpoints.chars[-1].to_i
+    letter_index_diff = grid_letters.index(endpoints.chars[0]) - grid_letters.index(endpoints.chars[-2])
     if endpoints.chars[0] == endpoints.chars[-2]
-      endpoints.chars[1].to_i - endpoints.chars[-1].to_i == (-2 || 2)
+      number_diff.abs == 2
     elsif endpoints.chars[1] == endpoints.chars[-1]
-      grid_letters.index(endpoints.chars[0]) - grid_letters.index(endpoints.chars[-2]) == (-2 || 2)
+      letter_index_diff.abs == 2
     end
   end
 end
