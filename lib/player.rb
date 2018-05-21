@@ -1,7 +1,7 @@
 class Player
 
   def initialize
-    @rounds = 0
+    @total_shots = []
   end
 
   def menu_choice
@@ -49,4 +49,19 @@ class Player
     return p_cells_for_3ship
   end
 
+  def input_shot(board, shots_fired)
+    loop do
+    shot = gets.chomp
+      if board.grid.has_key?(shot) == false
+        puts shot_not_on_grid
+      elsif @total_shots.include?(shot)
+        puts already_shot
+      else
+        @total_shots << shot
+        puts valid_shot
+        break
+      end
+    end
+    return shot
+  end
 end
