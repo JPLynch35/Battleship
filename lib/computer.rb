@@ -20,5 +20,4 @@ class Computer
   def announce_shot(shot)
     puts enemy_shot_coord(shot)
   end
-
 end
