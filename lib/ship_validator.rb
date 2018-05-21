@@ -19,7 +19,7 @@ module Ship_Validator
     elsif diagonal == true
       puts ship_diagonal_error
       valid = false
-    elsif length == true
+    elsif length == false
       puts ship_length_error
       valid = false
     end
@@ -28,10 +28,12 @@ module Ship_Validator
 
   def p_check_2ship_length(board, endpoints)
     grid_letters = ['A', 'B', 'C', 'D']
+    number_diff = endpoints.chars[1].to_i - endpoints.chars[-1].to_i
+    letter_index_diff = grid_letters.index(endpoints.chars[0]) - grid_letters.index(endpoints.chars[-2])
     if endpoints.chars[0] == endpoints.chars[-2]
-      endpoints.chars[1].to_i - endpoints.chars[-1].to_i != -1 || 1
+      number_diff.abs == 1
     elsif endpoints.chars[1] == endpoints.chars[-1]
-      grid_letters.index(endpoints.chars[0]) - grid_letters.index(endpoints.chars[-2]) != -1 || 1
+      letter_index_diff.abs == 1
     end
   end
 

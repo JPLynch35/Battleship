@@ -1,10 +1,17 @@
 class Board
   attr_reader :grid,
+              :player_shots,
               :grid_rules_3ship,
               :grid_rules_2ship
 
   def initialize
     @grid = {
+      'A1' => ' ', 'A2' => ' ', 'A3' => ' ', 'A4' => ' ',
+      'B1' => ' ', 'B2' => ' ', 'B3' => ' ', 'B4' => ' ',
+      'C1' => ' ', 'C2' => ' ', 'C3' => ' ', 'C4' => ' ',
+      'D1' => ' ', 'D2' => ' ', 'D3' => ' ', 'D4' => ' '
+    }
+    @opposing_shots = {
       'A1' => ' ', 'A2' => ' ', 'A3' => ' ', 'A4' => ' ',
       'B1' => ' ', 'B2' => ' ', 'B3' => ' ', 'B4' => ' ',
       'C1' => ' ', 'C2' => ' ', 'C3' => ' ', 'C4' => ' ',
@@ -24,19 +31,34 @@ class Board
     }
   end
 
-  def game_board(board)
-    puts "==========="
+  def game_board
+    puts "\n==========="
     puts ". 1 2 3 4"
-    puts "A #{board.grid['A1']} #{board.grid['A2']} #{board.grid['A3']} #{board.grid['A4']}"
-    puts "B #{board.grid['B1']} #{board.grid['B2']} #{board.grid['B3']} #{board.grid['B4']}"
-    puts "C #{board.grid['C1']} #{board.grid['C2']} #{board.grid['C3']} #{board.grid['C4']}"
-    puts "D #{board.grid['D1']} #{board.grid['D2']} #{board.grid['D3']} #{board.grid['D4']}"
-    puts "==========="
+    puts "A #{@grid['A1']} #{@grid['A2']} #{@grid['A3']} #{@grid['A4']}"
+    puts "B #{@grid['B1']} #{@grid['B2']} #{@grid['B3']} #{@grid['B4']}"
+    puts "C #{@grid['C1']} #{@grid['C2']} #{@grid['C3']} #{@grid['C4']}"
+    puts "D #{@grid['D1']} #{@grid['D2']} #{@grid['D3']} #{@grid['D4']}"
+    puts "===========\n"
   end
 
-  def set_ship(board, all_ship_cells)
+  def opposing_shots_board
+    puts "Your shots"
+    puts "==========="
+    puts ". 1 2 3 4"
+    puts "A #{@opposing_shots['A1']} #{@opposing_shots['A2']} #{@opposing_shots['A3']} #{@opposing_shots['A4']}"
+    puts "B #{@opposing_shots['B1']} #{@opposing_shots['B2']} #{@opposing_shots['B3']} #{@opposing_shots['B4']}"
+    puts "C #{@opposing_shots['C1']} #{@opposing_shots['C2']} #{@opposing_shots['C3']} #{@opposing_shots['C4']}"
+    puts "D #{@opposing_shots['D1']} #{@opposing_shots['D2']} #{@opposing_shots['D3']} #{@opposing_shots['D4']}"
+    puts "===========\n"
+  end
+
+  def set_ship(all_ship_cells)
     all_ship_cells.each do |cell|
-      board.grid[cell] = "S"
+      if all_ship_cells.length == 3
+        @grid[cell] = "3"
+      else
+        @grid[cell] = "2"
+      end
     end
   end
 
@@ -45,4 +67,32 @@ class Board
       cells_for_3ship.include?(cell)
     end
   end
+
+  def check_hits(shot)
+    if @grid[shot] == ("3" || "2")
+      @grid[shot] = "H"
+      @opposing_shots[shot] = "H"
+      puts hit
+    else
+      @grid[shot] = "M"
+      @opposing_shots[shot] = "M"
+      puts miss
+    end
+  end
+
+  def count_hits
+    hits = opposing_shots.count do |shots|
+      shots == "H"
+    end
+    return hits
+  end
+
+  def check_for_win(hits)
+    if hits == 5
+      return true
+    else
+      false
+    end
+  end
+
 end

@@ -54,13 +54,14 @@ class Player
     shot = gets.chomp
       if board.grid.has_key?(shot) == false
         puts shot_not_on_grid
-      elsif shots_fired.include?(shot)
+      elsif @total_shots.include?(shot)
         puts already_shot
       else
-        shots_fired << shot
+        @total_shots << shot
         puts valid_shot
         break
       end
     end
+    return shot
   end
 end

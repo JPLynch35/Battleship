@@ -1,7 +1,19 @@
 class Computer
 
   def initialize
-    @rounds = 0
+    @total_shots = []
+  end
+
+  def randomize_shot(board)
+    loop do
+    shot = board.grid.keys.sample
+      if @total_shots.include?(shot)
+      else
+        @total_shots << shot
+        break
+      end
+    end
+    return shot
   end
 
 end
