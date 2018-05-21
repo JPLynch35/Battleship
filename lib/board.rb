@@ -2,7 +2,9 @@ class Board
   attr_reader :grid,
               :player_shots,
               :grid_rules_3ship,
-              :grid_rules_2ship
+              :grid_rules_2ship,
+              :finish_minutes,
+              :finish_seconds
 
   def initialize
     @grid = {
@@ -42,7 +44,7 @@ class Board
   end
 
   def opposing_shots_board
-    puts "Your shots"
+    puts "\nYour shots"
     puts "==========="
     puts ". 1 2 3 4"
     puts "A #{@opposing_shots['A1']} #{@opposing_shots['A2']} #{@opposing_shots['A3']} #{@opposing_shots['A4']}"
@@ -69,7 +71,7 @@ class Board
   end
 
   def check_hits(shot)
-    if @grid[shot] == ("3" || "2")
+    if @grid[shot] == "3" || @grid[shot] == "2"
       @grid[shot] = "H"
       @opposing_shots[shot] = "H"
       puts hit
@@ -81,7 +83,7 @@ class Board
   end
 
   def count_hits
-    hits = opposing_shots.count do |shots|
+    hits = @opposing_shots.values.count do |shots|
       shots == "H"
     end
     return hits

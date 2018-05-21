@@ -40,7 +40,7 @@ module Text
   end
 
   def fire_prompt
-    "Enter a coordinate to fire at!"
+    "Enter a coordinate to fire at."
   end
 
   def valid_shot
@@ -75,7 +75,7 @@ module Text
     "The game took #{shot_count} shots to complete."
   end
 
-  def time_to_finish(time)
-    "The game took #{time} to complete."
+  def time_to_finish(min, sec)
+    "The game took #{min} minute(s) and #{sec} seconds to complete."
   end
 end

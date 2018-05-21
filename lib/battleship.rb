@@ -56,4 +56,4 @@ end
 finish = Time.now
 time = p_board.time_check(start, finish)
 puts shots_to_finish(player.total_shots.length)
-puts time_to_finish(time)
+puts time_to_finish(p_board.finish_minutes, p_board.finish_seconds)

@@ -1,11 +1,11 @@
 class Computer
-  attr_reader :total_shots
 
   def initialize
     @total_shots = []
   end
 
   def randomize_shot(board)
+    shot = ""
     loop do
     shot = board.grid.keys.sample
       if @total_shots.include?(shot)
