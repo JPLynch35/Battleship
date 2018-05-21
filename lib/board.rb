@@ -3,8 +3,8 @@ class Board
               :player_shots,
               :grid_rules_3ship,
               :grid_rules_2ship,
-              :finish_minutes,
-              :finish_seconds
+              :finish_min,
+              :finish_sec
 
   def initialize
     @grid = {
@@ -127,7 +127,7 @@ class Board
 
   def time_check(start, finish)
     timetocomplete = finish - start
-    @finish_minutes = (timetocomplete / 60).to_i
-    @finish_seconds = (timetocomplete % 60).to_i
+    @finish_min = (timetocomplete / 60).to_i
+    @finish_sec = (timetocomplete % 60).to_i
   end
 end
