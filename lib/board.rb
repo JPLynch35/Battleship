@@ -2,7 +2,9 @@ class Board
   attr_reader :grid,
               :player_shots,
               :grid_rules_3ship,
-              :grid_rules_2ship
+              :grid_rules_2ship,
+              :finish_minutes,
+              :finish_seconds
 
   def initialize
     @grid = {
@@ -32,24 +34,24 @@ class Board
   end
 
   def game_board
-    puts "\n==========="
+    puts "==========="
     puts ". 1 2 3 4"
     puts "A #{@grid['A1']} #{@grid['A2']} #{@grid['A3']} #{@grid['A4']}"
     puts "B #{@grid['B1']} #{@grid['B2']} #{@grid['B3']} #{@grid['B4']}"
     puts "C #{@grid['C1']} #{@grid['C2']} #{@grid['C3']} #{@grid['C4']}"
     puts "D #{@grid['D1']} #{@grid['D2']} #{@grid['D3']} #{@grid['D4']}"
-    puts "===========\n"
+    puts "==========="
   end
 
   def opposing_shots_board
-    puts "Your shots"
+    puts "Shot History"
     puts "==========="
     puts ". 1 2 3 4"
     puts "A #{@opposing_shots['A1']} #{@opposing_shots['A2']} #{@opposing_shots['A3']} #{@opposing_shots['A4']}"
     puts "B #{@opposing_shots['B1']} #{@opposing_shots['B2']} #{@opposing_shots['B3']} #{@opposing_shots['B4']}"
     puts "C #{@opposing_shots['C1']} #{@opposing_shots['C2']} #{@opposing_shots['C3']} #{@opposing_shots['C4']}"
     puts "D #{@opposing_shots['D1']} #{@opposing_shots['D2']} #{@opposing_shots['D3']} #{@opposing_shots['D4']}"
-    puts "===========\n"
+    puts "==========="
   end
 
   def set_ship(all_ship_cells)
@@ -69,7 +71,7 @@ class Board
   end
 
   def check_hits(shot)
-    if @grid[shot] == ("3" || "2")
+    if @grid[shot] == "3" || @grid[shot] == "2"
       @grid[shot] = "H"
       @opposing_shots[shot] = "H"
       puts hit
@@ -81,10 +83,38 @@ class Board
   end
 
   def count_hits
-    hits = opposing_shots.count do |shots|
+    hits = @opposing_shots.values.count do |shots|
       shots == "H"
     end
     return hits
+  end
+
+  def check_for_sunken_3ship(sunk_flag, grid)
+    sunk_3ship = grid.values.none? do |value|
+      value == "3"
+    end
+    if sunk_flag == false && sunk_3ship == true
+      puts sunk_the_3ship
+      return true
+    elsif sunk_flag == true && sunk_3ship == true
+      return true
+    else
+      return false
+    end
+  end
+
+  def check_for_sunken_2ship(sunk_flag, grid)
+    sunk_2ship = grid.values.none? do |value|
+      value == "2"
+    end
+    if sunk_flag == false && sunk_2ship == true
+      puts sunk_the_2ship
+      return true
+    elsif sunk_flag == true && sunk_2ship == true
+      return true
+    else
+      return false
+    end
   end
 
   def check_for_win(hits)
@@ -95,4 +125,9 @@ class Board
     end
   end
 
+  def time_check(start, finish)
+    timetocomplete = finish - start
+    @finish_minutes = (timetocomplete / 60).to_i
+    @finish_seconds = (timetocomplete % 60).to_i
+  end
 end

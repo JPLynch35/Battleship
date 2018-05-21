@@ -1,4 +1,5 @@
 class Player
+  attr_reader :total_shots
 
   def initialize
     @total_shots = []
@@ -50,12 +51,13 @@ class Player
   end
 
   def input_shot(board, shots_fired)
+    shot = ""
     loop do
-    shot = gets.chomp
+    shot = gets.chomp.upcase
       if board.grid.has_key?(shot) == false
         puts shot_not_on_grid
       elsif @total_shots.include?(shot)
-        puts already_shot
+        puts already_shot 
       else
         @total_shots << shot
         puts valid_shot
@@ -64,4 +66,13 @@ class Player
     end
     return shot
   end
+
+  def press_enter_to_continue
+    puts press_enter
+    loop do
+      waiting = gets
+      break if waiting == "\n"
+    end
+  end
+
 end

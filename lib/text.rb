@@ -40,11 +40,11 @@ module Text
   end
 
   def fire_prompt
-    "Enter a coordinate to fire at!"
+    "Enter a coordinate to fire at."
   end
 
   def valid_shot
-    "FIRE!"
+    "\nFIRE!"
   end
 
   def shot_not_on_grid
@@ -63,11 +63,44 @@ module Text
     "Miss."
   end
 
+
+  def your_turn
+    "\nYOUR TURN"
+  end
+
+  def enemy_turn
+    "\nENEMY'S TURN"
+  end
+
+  def enemy_shot_coord(shot)
+    "The enemy fired at #{shot}."
+  end
+
+  def press_enter
+    "Press enter to continue."
+  end
+
+  def sunk_the_2ship
+    "The 2 unit ship has been sunk!"
+  end
+
+  def sunk_the_3ship
+    "The 3 unit ship has been sunk!"
+  end
+
   def win
     "Congratulations, you won!"
   end
 
   def lose
     "You lost, better luck next time."
+  end
+
+  def metrics_to_finish(shot_count, min, sec)
+    "The game took #{min} minute(s) and #{sec} seconds, with #{shot_count} shots to complete."
+  end
+
+  def time_to_finish(min, sec)
+    "The game took #{min} minute(s) and #{sec} seconds to complete."
   end
 end

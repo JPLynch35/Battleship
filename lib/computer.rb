@@ -5,6 +5,7 @@ class Computer
   end
 
   def randomize_shot(board)
+    shot = ""
     loop do
     shot = board.grid.keys.sample
       if @total_shots.include?(shot)
@@ -14,6 +15,10 @@ class Computer
       end
     end
     return shot
+  end
+
+  def announce_shot(shot)
+    puts enemy_shot_coord(shot)
   end
 
 end
