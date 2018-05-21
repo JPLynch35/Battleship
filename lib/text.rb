@@ -70,4 +70,12 @@ module Text
   def lose
     "You lost, better luck next time."
   end
+
+  def shots_to_finish(shot_count)
+    "The game took #{shot_count} shots to complete."
+  end
+
+  def time_to_finish(time)
+    "The game took #{time} to complete."
+  end
 end

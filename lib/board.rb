@@ -95,4 +95,9 @@ class Board
     end
   end
 
+  def time_check(start, finish)
+    timetocomplete = finish - start
+    @finish_minutes = (timetocomplete / 60).to_i
+    @finish_seconds = (timetocomplete % 60).to_i
+  end
 end

@@ -12,6 +12,7 @@ player = Player.new
 computer = Computer.new
 puts welcome_screen
 player.menu_choice
+start = Time.now
 
 c_board = Board.new
 c_cells_for_3ship = create_3ship(c_board)
@@ -36,6 +37,7 @@ loop do
   p_win = c_board.check_for_win(hits)
   if p_win == 1
     puts win
+    finish = Time.now
     break
   end
 
@@ -45,9 +47,11 @@ loop do
   c_win = p_board.check_for_win(hits)
   if c_win == 1
     puts lose
+    finish = Time.now
     break
   end
 end
 
-# This game lasted xxmin xxsec
-# It took x shots to win (player.shots.length)
+time = p_board.time_check(start, finish)
+puts shots_to_finish(player.total_shots.length)
+puts time_to_finish(time)
