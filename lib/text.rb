@@ -5,7 +5,7 @@ module Text
   end
 
   def game_instructions
-      "       The purpose of the game is for the player to sink the computer's ships.
+      "      The purpose of the game is for the player to sink the computer's ships.
       Both sides will place two ships of length 2 and 3 on their game board. Each
       side will take turns firing on the other's grid, and return with a hit or
       miss. The game ends when one side successfully hits every grid cell containing
@@ -98,9 +98,5 @@ module Text
 
   def metrics_to_finish(shot_count, min, sec)
     "The game took #{min} minute(s) and #{sec} seconds, with #{shot_count} shots to complete."
-  end
-
-  def time_to_finish(min, sec)
-    "The game took #{min} minute(s) and #{sec} seconds to complete."
   end
 end
