@@ -34,24 +34,24 @@ class Board
   end
 
   def game_board
-    puts "\n==========="
+    puts "==========="
     puts ". 1 2 3 4"
     puts "A #{@grid['A1']} #{@grid['A2']} #{@grid['A3']} #{@grid['A4']}"
     puts "B #{@grid['B1']} #{@grid['B2']} #{@grid['B3']} #{@grid['B4']}"
     puts "C #{@grid['C1']} #{@grid['C2']} #{@grid['C3']} #{@grid['C4']}"
     puts "D #{@grid['D1']} #{@grid['D2']} #{@grid['D3']} #{@grid['D4']}"
-    puts "===========\n"
+    puts "==========="
   end
 
   def opposing_shots_board
-    puts "\nYour shots"
+    puts "Shot History"
     puts "==========="
     puts ". 1 2 3 4"
     puts "A #{@opposing_shots['A1']} #{@opposing_shots['A2']} #{@opposing_shots['A3']} #{@opposing_shots['A4']}"
     puts "B #{@opposing_shots['B1']} #{@opposing_shots['B2']} #{@opposing_shots['B3']} #{@opposing_shots['B4']}"
     puts "C #{@opposing_shots['C1']} #{@opposing_shots['C2']} #{@opposing_shots['C3']} #{@opposing_shots['C4']}"
     puts "D #{@opposing_shots['D1']} #{@opposing_shots['D2']} #{@opposing_shots['D3']} #{@opposing_shots['D4']}"
-    puts "===========\n"
+    puts "==========="
   end
 
   def set_ship(all_ship_cells)
@@ -87,6 +87,20 @@ class Board
       shots == "H"
     end
     return hits
+  end
+
+  def check_for_sunken_3ship(board)
+    sunk_3ship = board.grid.values.none? do |value|
+      "3"
+    end
+    puts sunk_the_3ship if sunk_3ship == true
+  end
+
+  def check_for_sunken_2ship(board)
+    sunk_2ship = board.grid.values.none? do |value|
+      "2"
+    end
+    puts sunk_the_2ship if sunk_2ship == true
   end
 
   def check_for_win(hits)

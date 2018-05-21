@@ -30,10 +30,13 @@ p_board.set_ship(p_cells_for_3ship)
 # p_board.game_board #can delete this line, just showing computer board for testing
 
 loop do
+  puts your_turn
   c_board.opposing_shots_board
   puts fire_prompt
   shot = player.input_shot(c_board, player.total_shots)
   c_board.check_hits(shot)
+  c_board.check_for_sunken_3ship(c_board)
+  c_board.check_for_sunken_2ship(c_board)
   c_board.opposing_shots_board
   hits = c_board.count_hits
   p_win = c_board.check_for_win(hits)
@@ -41,9 +44,14 @@ loop do
     puts win
     break
   end
+  player.press_enter_to_continue
 
+  puts enemy_turn
   shot = computer.randomize_shot(p_board)
+  computer.announce_shot(shot)
   p_board.check_hits(shot)
+  p_board.check_for_sunken_3ship(p_board)
+  p_board.check_for_sunken_2ship(p_board)
   p_board.opposing_shots_board
   hits = p_board.count_hits
   c_win = p_board.check_for_win(hits)
@@ -51,9 +59,9 @@ loop do
     puts lose
     break
   end
+  player.press_enter_to_continue
 end
 
 finish = Time.now
 time = p_board.time_check(start, finish)
-puts shots_to_finish(player.total_shots.length)
-puts time_to_finish(p_board.finish_minutes, p_board.finish_seconds)
+puts metrics_to_finish(player.total_shots.length, p_board.finish_minutes, p_board.finish_seconds)
