@@ -1,5 +1,6 @@
 class Board
   attr_reader :grid,
+              :opposing_shots,
               :player_shots,
               :grid_rules_3ship,
               :grid_rules_2ship,
@@ -70,20 +71,20 @@ class Board
     end
   end
 
-  def check_hits(shot)
-    if @grid[shot] == "3" || @grid[shot] == "2"
-      @grid[shot] = "H"
+  def check_hits(shot, grid)
+    if grid[shot] == "3" || grid[shot] == "2"
+      grid[shot] = "H"
       @opposing_shots[shot] = "H"
       puts hit
     else
-      @grid[shot] = "M"
+      grid[shot] = "M"
       @opposing_shots[shot] = "M"
       puts miss
     end
   end
 
-  def count_hits
-    hits = @opposing_shots.values.count do |shots|
+  def count_hits(opposing_shots)
+    hits = opposing_shots.values.count do |shots|
       shots == "H"
     end
     return hits
