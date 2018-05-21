@@ -89,18 +89,32 @@ class Board
     return hits
   end
 
-  def check_for_sunken_3ship(board)
-    sunk_3ship = board.grid.values.none? do |value|
-      "3"
+  def check_for_sunken_3ship(sunk_flag, grid)
+    sunk_3ship = grid.values.none? do |value|
+      value == "3"
     end
-    puts sunk_the_3ship if sunk_3ship == true
+    if sunk_flag == false && sunk_3ship == true
+      puts sunk_the_3ship
+      return true
+    elsif sunk_flag == true && sunk_3ship == true
+      return true
+    else
+      return false
+    end
   end
 
-  def check_for_sunken_2ship(board)
-    sunk_2ship = board.grid.values.none? do |value|
-      "2"
+  def check_for_sunken_2ship(sunk_flag, grid)
+    sunk_2ship = grid.values.none? do |value|
+      value == "2"
     end
-    puts sunk_the_2ship if sunk_2ship == true
+    if sunk_flag == false && sunk_2ship == true
+      puts sunk_the_2ship
+      return true
+    elsif sunk_flag == true && sunk_2ship == true
+      return true
+    else
+      return false
+    end
   end
 
   def check_for_win(hits)

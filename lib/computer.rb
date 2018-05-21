@@ -17,4 +17,8 @@ class Computer
     return shot
   end
 
+  def announce_shot(shot)
+    puts enemy_shot_coord(shot)
+  end
+
 end
