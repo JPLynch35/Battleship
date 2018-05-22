@@ -59,7 +59,7 @@ module BoardCalculations
     if hits == 5
       return true
     else
-      false
+      return false
     end
   end
 
