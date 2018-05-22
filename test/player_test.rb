@@ -11,11 +11,4 @@ class PlayerTest < Minitest::Test
     player = Player.new
     assert_empty player.total_shots
   end
-
-  # def test_menu_choice_plays
-  #   player = Player.new
-  #   user_menu_input = 'P'
-  #   player_
-  # end
-
 end
