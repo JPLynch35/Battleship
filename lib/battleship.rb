@@ -1,12 +1,12 @@
 require './lib/board'
 require './lib/computer'
 require './lib/player'
-require './lib/ship'
-require './lib/ship_validator'
+require './lib/computerships'
+require './lib/playerships'
 require './lib/text'
 
-include Ship
-include Ship_Validator
+include ComputerShips
+include PlayerShips
 include Text
 
 player = Player.new
@@ -20,7 +20,6 @@ c_3ship_cells = create_3ship(c_board)
 c_board.set_ship(c_3ship_cells)
 c_2ship_cells = create_2ship(c_board, c_3ship_cells)
 c_board.set_ship(c_2ship_cells)
-
 p_board = Board.new
 p_2ship_cells = player.input_2ship(p_board)
 p_board.set_ship(p_2ship_cells)
@@ -31,7 +30,6 @@ p_sunk_c_3ship = false
 p_sunk_c_2ship = false
 c_sunk_p_3ship = false
 c_sunk_p_2ship = false
-
 loop do
   puts p_turn
   c_board.opposing_shots_board
