@@ -37,5 +37,4 @@ class BoardTest < Minitest::Test
     expected = ['A1', 'A2']
     assert_equal expected, actual
   end
-
 end

@@ -38,8 +38,8 @@ module PlayerShips
   end
 
   def p_check_ship_wrap(endpoints)
-    test_1 = endpoints.chars.include?("A") && endpoints.chars.include?("D")
-    test_2 = endpoints.chars.include?("1") && endpoints.chars.include?("4")
+    test_1 = endpoints.chars.include?('A') && endpoints.chars.include?('D')
+    test_2 = endpoints.chars.include?('1') && endpoints.chars.include?('4')
     if test_1 || test_2
       true
     else

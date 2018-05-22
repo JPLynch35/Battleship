@@ -4,7 +4,7 @@ class Computer
   end
 
   def randomize_shot(board)
-    shot = ""
+    shot = ''
     loop do
     shot = board.grid.keys.sample
       if @total_shots.include?(shot)

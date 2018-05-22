@@ -69,9 +69,9 @@ class Board
   def set_ship(all_ship_cells)
     all_ship_cells.each do |cell|
       if all_ship_cells.length == 3
-        @grid[cell] = "3"
+        @grid[cell] = '3'
       else
-        @grid[cell] = "2"
+        @grid[cell] = '2'
       end
     end
   end
