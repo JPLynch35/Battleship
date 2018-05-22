@@ -3,7 +3,6 @@ require './lib/text'
 
 class TextTest < Minitest::Test
   include Text
-
   def test_welcome_screen_shows_text
     actual = welcome_screen
     expected = "      Welcome to BATTLESHIP\n
@@ -100,7 +99,7 @@ class TextTest < Minitest::Test
     assert_equal expected, actual
   end
 
-  def test_hit_shows_text
+  def test_miss_shows_text
     actual = miss
     expected = "Miss."
     assert_equal expected, actual

@@ -1,4 +1,9 @@
+require './lib/text'
+
 class Computer
+  include Text
+  attr_reader :total_shots
+
   def initialize
     @total_shots = []
   end

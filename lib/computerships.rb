@@ -24,7 +24,7 @@ module ComputerShips
 
   def first_cell_for_ship(board)
     board_keys = board.grid.keys
-    start_cell = board_keys.sample
+    board_keys.sample
   end
 
   def find_build_direction(board, first_cell)
