@@ -1,4 +1,7 @@
+require './lib/text'
+
 module BoardCalculations
+  include Text
   def check_colliding(cells_for_3ship, cells_for_2ship)
     cells_for_2ship.any? do |cell|
       cells_for_3ship.include?(cell)
@@ -6,27 +9,27 @@ module BoardCalculations
   end
 
   def check_hits(shot, grid)
-    if grid[shot] == "3" || grid[shot] == "2"
-      grid[shot] = "H"
-      @opposing_shots[shot] = "H"
+    if grid[shot] == '3' || grid[shot] == '2'
+      grid[shot] = 'H'
+      @opposing_shots[shot] = 'H'
       puts hit
     else
-      grid[shot] = "M"
-      @opposing_shots[shot] = "M"
+      grid[shot] = 'M'
+      @opposing_shots[shot] = 'M'
       puts miss
     end
   end
 
   def count_hits(opposing_shots)
     hits = opposing_shots.values.count do |shots|
-      shots == "H"
+      shots == 'H'
     end
     return hits
   end
 
   def check_for_sunken_3ship(sunk_flag, grid)
     sunk_3ship = grid.values.none? do |value|
-      value == "3"
+      value == '3'
     end
     if sunk_flag == false && sunk_3ship == true
       puts sunk_the_3ship
@@ -40,7 +43,7 @@ module BoardCalculations
 
   def check_for_sunken_2ship(sunk_flag, grid)
     sunk_2ship = grid.values.none? do |value|
-      value == "2"
+      value == '2'
     end
     if sunk_flag == false && sunk_2ship == true
       puts sunk_the_2ship
@@ -56,7 +59,7 @@ module BoardCalculations
     if hits == 5
       return true
     else
-      false
+      return false
     end
   end
 

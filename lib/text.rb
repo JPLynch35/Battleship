@@ -12,6 +12,10 @@ module Text
       an enemy ship."
   end
 
+  def ship_coord_not_valid
+    "Entered ship coordinates are not valid.  Please input new coordinates."
+  end
+
   def player_2ship_prompt
       "      I have laid out my ships on the grid. You now need to layout your
       two ships. The first is two units long and the second is three units long.
