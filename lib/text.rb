@@ -64,11 +64,11 @@ module Text
   end
 
 
-  def your_turn
+  def p_turn
     "\nYOUR TURN"
   end
 
-  def enemy_turn
+  def c_turn
     "\nENEMY'S TURN"
   end
 
@@ -97,6 +97,6 @@ module Text
   end
 
   def metrics_to_finish(shot_count, min, sec)
-    "The game took #{min} minute(s) and #{sec} seconds, with #{shot_count} shots to complete."
+    "The game took #{min} minute(s) and #{sec} seconds, with #{shot_count} shots, to complete."
   end
 end

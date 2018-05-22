@@ -1,5 +1,4 @@
 class Computer
-
   def initialize
     @total_shots = []
   end

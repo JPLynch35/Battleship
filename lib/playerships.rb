@@ -1,4 +1,4 @@
-module Ship_Validator
+module PlayerShips
   def p_check_2ship_is_possible(board, endpoints)
     first_cell = endpoints.chars[0]+endpoints.chars[1]
     second_cell = endpoints.chars[-2]+endpoints.chars[-1]
@@ -13,11 +13,11 @@ module Ship_Validator
     length = p_check_2ship_length(board, endpoints)
     diagonal = p_check_ship_diagonal(board, endpoints)
     valid = true
-    if wrap == true
+    if diagonal == true
+        puts ship_diagonal_error
+        valid = false
+    elsif wrap == true
       puts ship_wrap_error
-      valid = false
-    elsif diagonal == true
-      puts ship_diagonal_error
       valid = false
     elsif length == false
       puts ship_length_error

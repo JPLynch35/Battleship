@@ -1,4 +1,4 @@
-module Ship
+module ComputerShips
   def create_3ship(board)
     first_cell = first_cell_for_ship(board)
     build_dir = find_build_direction(board, first_cell)

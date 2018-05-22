@@ -74,5 +74,4 @@ class Player
       break if waiting == "\n"
     end
   end
-
 end
