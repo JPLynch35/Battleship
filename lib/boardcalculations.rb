@@ -1,4 +1,7 @@
+require './lib/text'
+
 module BoardCalculations
+  include Text
   def check_colliding(cells_for_3ship, cells_for_2ship)
     cells_for_2ship.any? do |cell|
       cells_for_3ship.include?(cell)
