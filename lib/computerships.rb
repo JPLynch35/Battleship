@@ -14,7 +14,7 @@ module ComputerShips
       build_dir = find_build_direction(board, first_cell)
       second_cell = next_cell_for_ship(first_cell, build_dir)
       cells_for_2ship = [first_cell, second_cell]
-      conflict = board.check_colliding(cells_for_3ship, cells_for_2ship)
+      conflict = board.colliding?(cells_for_3ship, cells_for_2ship)
       if conflict == false
         break
       end

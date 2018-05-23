@@ -2,7 +2,7 @@ require './lib/text'
 
 module BoardCalculations
   include Text
-  def check_colliding(cells_for_3ship, cells_for_2ship)
+  def colliding?(cells_for_3ship, cells_for_2ship)
     cells_for_2ship.any? do |cell|
       cells_for_3ship.include?(cell)
     end
@@ -27,8 +27,8 @@ module BoardCalculations
     return hits
   end
 
-  def check_for_sunken_3ship(sunk_flag, grid)
-    sunk_3ship = check_for_3s_left_on_board(grid)
+  def sunken_3ship?(sunk_flag, grid)
+    sunk_3ship = any_3s_left?(grid)
     if sunk_flag == false && sunk_3ship == true
       puts sunk_the_3ship
       return true
@@ -39,14 +39,14 @@ module BoardCalculations
     end
   end
 
-  def check_for_3s_left_on_board(grid)
+  def any_3s_left?(grid)
     grid.values.none? do |value|
       value == '3'
     end
   end
 
-  def check_for_sunken_2ship(sunk_flag, grid)
-    sunk_2ship = check_for_2s_left_on_board(grid)
+  def sunken_2ship?(sunk_flag, grid)
+    sunk_2ship = any_2s_left?(grid)
     if sunk_flag == false && sunk_2ship == true
       puts sunk_the_2ship
       return true
@@ -57,13 +57,13 @@ module BoardCalculations
     end
   end
 
-  def check_for_2s_left_on_board(grid)
+  def any_2s_left?(grid)
     grid.values.none? do |value|
       value == '2'
     end
   end
 
-  def check_for_win(hits)
+  def win?(hits)
     if hits == 5
       return true
     else

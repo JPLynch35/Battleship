@@ -36,11 +36,11 @@ loop do
   puts fire_prompt
   shot = player.input_shot(c_board, player.total_shots)
   c_board.check_hits(shot, c_board.grid)
-  p_sunk_c_3ship = c_board.check_for_sunken_3ship(p_sunk_c_3ship, c_board.grid)
-  p_sunk_c_2ship = c_board.check_for_sunken_2ship(p_sunk_c_2ship, c_board.grid)
+  p_sunk_c_3ship = c_board.sunken_3ship?(p_sunk_c_3ship, c_board.grid)
+  p_sunk_c_2ship = c_board.sunken_2ship?(p_sunk_c_2ship, c_board.grid)
   c_board.opposing_shots_board
   hits = c_board.count_hits(c_board.opposing_shots)
-  p_win = c_board.check_for_win(hits)
+  p_win = c_board.win?(hits)
   if p_win == true
     puts win
     break
@@ -51,11 +51,11 @@ loop do
   shot = computer.randomize_shot(p_board)
   computer.announce_shot(shot)
   p_board.check_hits(shot, p_board.grid)
-  c_sunk_p_3ship = p_board.check_for_sunken_3ship(c_sunk_p_3ship, p_board.grid)
-  c_sunk_p_2ship = p_board.check_for_sunken_2ship(c_sunk_p_2ship, p_board.grid)
+  c_sunk_p_3ship = p_board.sunken_3ship?(c_sunk_p_3ship, p_board.grid)
+  c_sunk_p_2ship = p_board.sunken_2ship?(c_sunk_p_2ship, p_board.grid)
   p_board.game_board
   hits = p_board.count_hits(p_board.opposing_shots)
-  c_win = p_board.check_for_win(hits)
+  c_win = p_board.win?(hits)
   if c_win == true
     puts lose
     break

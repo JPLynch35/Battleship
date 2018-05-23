@@ -1,5 +1,5 @@
 module PlayerShips
-  def p_check_2ship_is_possible(board, endpoints)
+  def p_2ship_possible?(board, endpoints)
     first_cell = endpoints.chars[0]+endpoints.chars[1]
     second_cell = endpoints.chars[-2]+endpoints.chars[-1]
     possible_moves = board.grid_rules_2ship[first_cell]
@@ -8,10 +8,10 @@ module PlayerShips
     end
   end
 
-  def p_check_2ship_issues(board, endpoints)
-    wrap = p_check_ship_wrap(endpoints)
+  def p_2ship_issues?(board, endpoints)
+    wrap = p_ship_wrap?(endpoints)
     length = p_check_2ship_length(board, endpoints)
-    diagonal = p_check_ship_diagonal(board, endpoints)
+    diagonal = p_ship_diagonal?(board, endpoints)
     valid = true
     if diagonal == true
         puts ship_diagonal_error
@@ -37,7 +37,7 @@ module PlayerShips
     end
   end
 
-  def p_check_ship_wrap(endpoints)
+  def p_ship_wrap?(endpoints)
     test_1 = endpoints.chars.include?('A') && endpoints.chars.include?('D')
     test_2 = endpoints.chars.include?('1') && endpoints.chars.include?('4')
     if test_1 || test_2
@@ -47,7 +47,7 @@ module PlayerShips
     end
   end
 
-  def p_check_ship_diagonal(board, endpoints)
+  def p_ship_diagonal?(board, endpoints)
     if endpoints.chars[0] == endpoints.chars[-2]
       false
     elsif endpoints.chars[1] == endpoints.chars[-1]
@@ -57,7 +57,7 @@ module PlayerShips
     end
   end
 
-  def p_check_3ship_is_possible(board, p_cells_for_3ship)
+  def p_3ship_possible?(board, p_cells_for_3ship)
     first_cell = p_cells_for_3ship[0]
     second_cell = p_cells_for_3ship[1]
     possible_moves = board.grid_rules_3ship[first_cell]
@@ -80,11 +80,11 @@ module PlayerShips
     return [first_cell, second_cell, third_cell]
   end
 
-  def p_check_3ship_issues(board, endpoints, endpoints_2ship)
+  def p_3ship_issues?(board, endpoints, endpoints_2ship)
     cells_for_3ship = p_calculate_3ship_second_cell(endpoints)
     length = p_check_3ship_length(board, endpoints)
-    diagonal = p_check_ship_diagonal(board, endpoints)
-    collision = board.check_colliding(cells_for_3ship, endpoints_2ship)
+    diagonal = p_ship_diagonal?(board, endpoints)
+    collision = board.colliding?(cells_for_3ship, endpoints_2ship)
     valid = true
     if diagonal == true
       puts ship_diagonal_error
