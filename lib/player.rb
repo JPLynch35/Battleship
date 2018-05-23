@@ -50,8 +50,6 @@ class Player
     return p_3ship_cells
   end
 
-  #change from test name
-  #regexpression, regex, can look if they input the correct
   def check_input_is_as_expected
     letters = ['A', 'B', 'C', 'D']
     nums = ['1', '2', '3', '4']
