@@ -1,13 +1,4 @@
 module PlayerShips
-  def p_2ship_possible?(board, endpoints)
-    first_cell = endpoints.chars[0]+endpoints.chars[1]
-    second_cell = endpoints.chars[-2]+endpoints.chars[-1]
-    possible_moves = board.grid_rules_2ship[first_cell]
-    possible_moves.any? do |move|
-      second_cell == next_cell_for_ship(first_cell, move)
-    end
-  end
-
   def p_2ship_issues?(board, endpoints)
     wrap = p_ship_wrap?(endpoints)
     length = p_check_2ship_length(board, endpoints)
@@ -54,15 +45,6 @@ module PlayerShips
       false
     else
       true
-    end
-  end
-
-  def p_3ship_possible?(board, p_cells_for_3ship)
-    first_cell = p_cells_for_3ship[0]
-    second_cell = p_cells_for_3ship[1]
-    possible_moves = board.grid_rules_3ship[first_cell]
-    possible_moves.any? do |move|
-      second_cell == next_cell_for_ship(first_cell, move)
     end
   end
 

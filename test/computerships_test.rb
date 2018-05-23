@@ -37,4 +37,40 @@ class ComputerShipsTest < Minitest::Test
     assert_equal 'C4', actual2
   end
 
+  def test_build_up_cell_picks_correct_cell
+    actual1 = build_up_cell('B1')
+    actual2 = build_up_cell('D4')
+    expected1 = 'A1'
+    expected2 = 'C4'
+    assert_equal expected1, actual1
+    assert_equal expected2, actual2
+  end
+
+  def test_build_down_cell_picks_correct_cell
+    actual1 = build_down_cell('B2')
+    actual2 = build_down_cell('C3')
+    expected1 = 'C2'
+    expected2 = 'D3'
+    assert_equal expected1, actual1
+    assert_equal expected2, actual2
+  end
+
+  def test_build_left_cell_picks_correct_cell
+    actual1 = build_left_cell('B2')
+    actual2 = build_left_cell('C3')
+    expected1 = 'B1'
+    expected2 = 'C2'
+    assert_equal expected1, actual1
+    assert_equal expected2, actual2
+  end
+
+  def test_build_right_cell_picks_correct_cell
+    actual1 = build_right_cell('C1')
+    actual2 = build_right_cell('A3')
+    expected1 = 'C2'
+    expected2 = 'A4'
+    assert_equal expected1, actual1
+    assert_equal expected2, actual2
+  end
+
 end

@@ -8,26 +8,6 @@ class PlayerShipsTest < Minitest::Test
   include ComputerShips
   include PlayerShips
   include Text
-  def test_p_2ship_possible_makes_sure_next_cell_is_correct
-    board = Board.new
-    endpoints1 = 'A1 A2'
-    endpoints2 = 'D3 D4'
-    actual1 = p_2ship_possible?(board, endpoints1)
-    actual2 = p_2ship_possible?(board, endpoints2)
-    assert actual1
-    assert actual2
-  end
-
-  def test_p_2ship_possible_makes_sure_next_cell_is_incorrect
-    board = Board.new
-    endpoints1 = 'A1 B2'
-    endpoints2 = 'D1 D4'
-    actual1 = p_2ship_possible?(board, endpoints1)
-    actual2 = p_2ship_possible?(board, endpoints2)
-    refute actual1
-    refute actual2
-  end
-
   def test_p_2ship_issues_finds_diagonal_issue
     board = Board.new
     endpoints1 = 'A1 B2'
@@ -64,22 +44,6 @@ class PlayerShipsTest < Minitest::Test
     endpoints2 = 'C3 C4'
     actual1 = p_2ship_issues?(board, endpoints1)
     actual2 = p_2ship_issues?(board, endpoints2)
-    assert actual1
-    assert actual2
-  end
-
-  def test_p_3ship_possible_captures_coord_issues
-    board = Board.new
-    actual1 = p_3ship_possible?(board, ['A1', 'A4'])
-    actual2 = p_3ship_possible?(board, ['A1', 'B3'])
-    refute actual1
-    refute actual2
-  end
-
-  def test_p_3ship_possible_passes
-    board = Board.new
-    actual1 = p_3ship_possible?(board, ['A1', 'A2', 'A3'])
-    actual2 = p_3ship_possible?(board, ['A3', 'B3', 'C3'])
     assert actual1
     assert actual2
   end

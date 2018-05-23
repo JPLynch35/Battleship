@@ -33,20 +33,36 @@ module ComputerShips
   end
 
   def next_cell_for_ship(current_cell, build_dir)
-    grid_letters = ['A', 'B', 'C', 'D']
     if build_dir == 'u'
-      letter_index = grid_letters.index(current_cell[0])
-      next_cell_letter = grid_letters[letter_index - 1]
-      return next_cell_letter + current_cell[1]
+      build_up_cell(current_cell)
     elsif build_dir == 'd'
-      next_cell_letter = current_cell[0].next
-      return next_cell_letter + current_cell[1]
+      build_down_cell(current_cell)
     elsif build_dir == 'l'
-      next_cell_number = current_cell[1].to_i - 1
-      return current_cell[0] + next_cell_number.to_s
+      build_left_cell(current_cell)
     elsif build_dir == 'r'
-      next_cell_number = current_cell[1].to_i + 1
-      return current_cell[0] + next_cell_number.to_s
+      build_right_cell(current_cell)
     end
+  end
+
+  def build_up_cell(current_cell)
+    grid_letters = ['A', 'B', 'C', 'D']
+    letter_index = grid_letters.index(current_cell[0])
+    next_cell_letter = grid_letters[letter_index - 1]
+    return next_cell_letter + current_cell[1]
+  end
+
+  def build_down_cell(current_cell)
+    next_cell_letter = current_cell[0].next
+    return next_cell_letter + current_cell[1]
+  end
+
+  def build_left_cell(current_cell)
+    next_cell_number = current_cell[1].to_i - 1
+    return current_cell[0] + next_cell_number.to_s
+  end
+
+  def build_right_cell(current_cell)
+    next_cell_number = current_cell[1].to_i + 1
+    return current_cell[0] + next_cell_number.to_s
   end
 end
