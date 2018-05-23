@@ -68,7 +68,7 @@ class PlayerShipsTest < Minitest::Test
     assert actual2
   end
 
-  def p_check_3ship_is_possible_captures_coord_issues
+  def test_p_check_3ship_is_possible_captures_coord_issues
     board = Board.new
     actual1 = p_check_3ship_is_possible(board, ['A1', 'A4'])
     actual2 = p_check_3ship_is_possible(board, ['A1', 'B3'])
@@ -76,19 +76,21 @@ class PlayerShipsTest < Minitest::Test
     refute actual2
   end
 
-  def p_check_3ship_is_possible_passes
+  def test_p_check_3ship_is_possible_passes
     board = Board.new
-    actual1 = p_check_3ship_is_possible(board, ['A1', 'A3'])
-    actual2 = p_check_3ship_is_possible(board, ['A3', 'C3'])
+    actual1 = p_check_3ship_is_possible(board, ['A1', 'A2', 'A3'])
+    actual2 = p_check_3ship_is_possible(board, ['A3', 'B3', 'C3'])
     assert actual1
     assert actual2
   end
 
-  def p_calculate_3ship_second_cell_calculates_correctly
+  def test_p_calculate_3ship_second_cell_calculates_correctly
     actual1= p_calculate_3ship_second_cell("A1 A3")
     actual2= p_calculate_3ship_second_cell("A3 C3")
-    assert_equal "A2", actual1
-    assert_equal "B3", actual2
+    expected1 = ['A1', 'A2', 'A3']
+    expected2 = ['A3', 'B3', 'C3']
+    assert_equal expected1, actual1
+    assert_equal expected2, actual2
   end
 
   def test_p_check_3ship_issues_finds_diagonal_issue
