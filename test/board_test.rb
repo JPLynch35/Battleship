@@ -68,7 +68,7 @@ class BoardTest < Minitest::Test
 
   def test_opposing_shots_board_displays_opposing_shots
     board = Board.new
-    actual = board.game_board
+    actual = board.opposing_shots_board
     expected = (
       puts "Shot History"
       puts "==========="
