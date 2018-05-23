@@ -1,20 +1,25 @@
 module PlayerShips
   def p_2ship_issues?(board, endpoints)
+    diagonal = p_ship_diagonal?(board, endpoints)
     wrap = p_ship_wrap?(endpoints)
     length = p_check_2ship_length(board, endpoints)
-    diagonal = p_ship_diagonal?(board, endpoints)
-    valid = true
+    valid = p_2ship_which_issues?(diagonal, wrap, length)
+    return valid
+  end
+
+  def p_2ship_which_issues?(diagonal, wrap, length)
     if diagonal == true
-        puts ship_diagonal_error
-        valid = false
+      puts ship_diagonal_error
+      false
     elsif wrap == true
       puts ship_wrap_error
-      valid = false
+      false
     elsif length == false
       puts ship_length_error
-      valid = false
+      false
+    else
+      true
     end
-    return valid
   end
 
   def p_check_2ship_length(board, endpoints)
@@ -64,21 +69,26 @@ module PlayerShips
 
   def p_3ship_issues?(board, endpoints, endpoints_2ship)
     cells_for_3ship = p_calculate_3ship_second_cell(endpoints)
-    length = p_check_3ship_length(board, endpoints)
     diagonal = p_ship_diagonal?(board, endpoints)
+    length = p_check_3ship_length(board, endpoints)
     collision = board.colliding?(cells_for_3ship, endpoints_2ship)
-    valid = true
+    valid = p_3ship_which_issues?(diagonal, length, collision)
+    return valid
+  end
+
+  def p_3ship_which_issues?(diagonal, length, collision)
     if diagonal == true
       puts ship_diagonal_error
-      valid = false
+      false
     elsif length == false
       puts ship_length_error
-      valid = false
+      false
     elsif collision == true
       puts ship_collision_error
-      valid = false
+      false
+    else
+      true
     end
-    return valid
   end
 
   def p_check_3ship_length(board, endpoints)
