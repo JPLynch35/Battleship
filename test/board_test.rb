@@ -9,14 +9,14 @@ class BoardTest < Minitest::Test
 
   def test_grid_starts_with_spaces
     board = Board.new
-    assert_equal ' ', board.grid['A1']
-    assert_equal ' ', board.grid['C1']
+    actual = board.grid.values.all? {|value| value == ' '}
+    assert actual
   end
 
   def test_opposing_shots_starts_with_spaces
     board = Board.new
-    assert_equal ' ', board.opposing_shots['A1']
-    assert_equal ' ', board.opposing_shots['C1']
+    actual = board.opposing_shots.values.all? {|value| value == ' '}
+    assert actual
   end
 
   def test_grid_rules_for_3ship_contains_direction_rules
