@@ -7,8 +7,8 @@ class BoardCalculationsTest < Minitest::Test
   def test_it_spots_ships_colliding_while_set
     board1 = Board.new
     board2 = Board.new
-    actual1 = board1.check_colliding(['A1', 'A2', 'A3'], ['A1', 'B1'])
-    actual2 = board2.check_colliding(['A1', 'C1', 'D1'], ['D1', 'D2'])
+    actual1 = board1.colliding?(['A1', 'A2', 'A3'], ['A1', 'B1'])
+    actual2 = board2.colliding?(['A1', 'C1', 'D1'], ['D1', 'D2'])
     assert actual1
     assert actual2
   end
@@ -94,7 +94,7 @@ class BoardCalculationsTest < Minitest::Test
     assert_equal 2, actual
   end
 
-  def test_check_for_sunken_3ship_properly_flags_as_not_sunk
+  def test_sunken_3ship_properly_flags_as_not_sunk
     board = Board.new
     board.set_ship(['A1', 'A2', 'A3'])
     shot1 = 'A1'
@@ -103,11 +103,11 @@ class BoardCalculationsTest < Minitest::Test
     board.check_hits(shot1, board.grid)
     board.check_hits(shot2, board.grid)
     board.check_hits(shot3, board.grid)
-    actual = board.check_for_sunken_3ship(false, board.grid)
+    actual = board.sunken_3ship?(false, board.grid)
     refute actual
   end
 
-  def test_check_for_sunken_3ship_properly_flags_as_sunk
+  def test_sunken_3ship_properly_flags_as_sunk
     board = Board.new
     board.set_ship(['A1', 'A2', 'A3'])
     shot1 = 'A1'
@@ -116,11 +116,11 @@ class BoardCalculationsTest < Minitest::Test
     board.check_hits(shot1, board.grid)
     board.check_hits(shot2, board.grid)
     board.check_hits(shot3, board.grid)
-    actual = board.check_for_sunken_3ship(false, board.grid)
+    actual = board.sunken_3ship?(false, board.grid)
     assert actual
   end
 
-  def test_check_for_sunken_3ship_properly_flags_as_already_sunk
+  def test_sunken_3ship_properly_flags_as_already_sunk
     board = Board.new
     board.set_ship(['A1', 'A2', 'A3'])
     shot1 = 'A1'
@@ -129,22 +129,22 @@ class BoardCalculationsTest < Minitest::Test
     board.check_hits(shot1, board.grid)
     board.check_hits(shot2, board.grid)
     board.check_hits(shot3, board.grid)
-    actual = board.check_for_sunken_3ship(true, board.grid)
+    actual = board.sunken_3ship?(true, board.grid)
     assert actual
   end
 
-  def test_check_for_3s_left_on_board_identifies_3s
+  def test_any_3s_left_identifies_3s
     board = Board.new
     board.set_ship(['A1', 'A2', 'A3'])
     shot1 = 'A1'
     shot2 = 'A2'
     board.check_hits(shot1, board.grid)
     board.check_hits(shot2, board.grid)
-    actual = check_for_3s_left_on_board(board.grid)
+    actual = any_3s_left?(board.grid)
     refute actual
   end
 
-  def test_check_for_3s_left_on_board_identifies_no_more_3s
+  def test_any_3s_left_identifies_no_more_3s
     board = Board.new
     board.set_ship(['A1', 'A2', 'A3'])
     shot1 = 'A1'
@@ -153,64 +153,64 @@ class BoardCalculationsTest < Minitest::Test
     board.check_hits(shot1, board.grid)
     board.check_hits(shot2, board.grid)
     board.check_hits(shot3, board.grid)
-    actual = check_for_3s_left_on_board(board.grid)
+    actual = any_3s_left?(board.grid)
     assert actual
   end
 
-  def test_check_for_sunken_2ship_properly_flags_as_not_sunk
+  def test_sunken_2ship_properly_flags_as_not_sunk
     board = Board.new
     board.set_ship(['A1', 'A2'])
     shot1 = 'A1'
     shot2 = 'D2'
     board.check_hits(shot1, board.grid)
     board.check_hits(shot2, board.grid)
-    actual = board.check_for_sunken_2ship(false, board.grid)
+    actual = board.sunken_2ship?(false, board.grid)
     refute actual
   end
 
-  def test_check_for_sunken_2ship_properly_flags_as_sunk
+  def test_sunken_2ship_properly_flags_as_sunk
     board = Board.new
     board.set_ship(['A1', 'A2'])
     shot1 = 'A1'
     shot2 = 'A2'
     board.check_hits(shot1, board.grid)
     board.check_hits(shot2, board.grid)
-    actual = board.check_for_sunken_2ship(false, board.grid)
+    actual = board.sunken_2ship?(false, board.grid)
     assert actual
   end
 
-  def test_check_for_sunken_2ship_properly_flags_as_already_sunk
+  def test_sunken_2ship_properly_flags_as_already_sunk
     board = Board.new
     board.set_ship(['A1', 'A2'])
     shot1 = 'A1'
     shot2 = 'A2'
     board.check_hits(shot1, board.grid)
     board.check_hits(shot2, board.grid)
-    actual = board.check_for_sunken_2ship(true, board.grid)
+    actual = board.sunken_2ship?(true, board.grid)
     assert actual
   end
 
-  def test_check_for_2s_left_on_board_identifies_2s
+  def test_any_2s_left_identifies_2s
     board = Board.new
     board.set_ship(['A1', 'A2'])
     shot1 = 'A1'
     board.check_hits(shot1, board.grid)
-    actual = check_for_2s_left_on_board(board.grid)
+    actual = any_2s_left?(board.grid)
     refute actual
   end
 
-  def test_check_for_2s_left_on_board_identifies_no_more_2s
+  def test_any_2s_left_identifies_no_more_2s
     board = Board.new
     board.set_ship(['A1', 'A2'])
     shot1 = 'A1'
     shot2 = 'A2'
     board.check_hits(shot1, board.grid)
     board.check_hits(shot2, board.grid)
-    actual = check_for_2s_left_on_board(board.grid)
+    actual = any_2s_left?(board.grid)
     assert actual
   end
 
-  def test_check_for_win_detects_win
+  def test_win_detects_win
     board = Board.new
     board.set_ship(['A1', 'A2','A3'])
     board.set_ship(['D1', 'D2'])
@@ -225,10 +225,10 @@ class BoardCalculationsTest < Minitest::Test
     board.check_hits(shot4, board.grid)
     board.check_hits(shot5, board.grid)
     hits = board.count_hits(board.opposing_shots)
-    assert board.check_for_win(hits)
+    assert board.win?(hits)
   end
 
-  def test_check_for_win_detects_no_win_yet
+  def test_win_detects_no_win_yet
     board = Board.new
     board.set_ship(['A1', 'A2','A3'])
     board.set_ship(['D1', 'D2'])
@@ -241,7 +241,7 @@ class BoardCalculationsTest < Minitest::Test
     board.check_hits(shot3, board.grid)
     board.check_hits(shot4, board.grid)
     hits = board.count_hits(board.opposing_shots)
-    refute board.check_for_win(hits)
+    refute board.win?(hits)
   end
 
   def test_time_check_correctly_checks_time
