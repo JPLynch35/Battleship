@@ -23,9 +23,8 @@ class Player
     p_endpoints_for_2ship = ''
     loop do
       p_endpoints_for_2ship = check_input_is_as_expected
-      valid_1 = p_2ship_possible?(board, p_endpoints_for_2ship)
-      valid_2 = p_2ship_issues?(board, p_endpoints_for_2ship)
-      if valid_1 == true && valid_2 == true
+      valid = p_2ship_issues?(board, p_endpoints_for_2ship)
+      if valid == true
         break
       end
     end
@@ -41,9 +40,8 @@ class Player
     loop do
       p_endpoints_for_3ship = check_input_is_as_expected
       p_3ship_cells = p_calculate_3ship_second_cell(p_endpoints_for_3ship)
-      valid_1 = p_3ship_possible?(board, p_3ship_cells)
-      valid_2 = p_3ship_issues?(board, p_endpoints_for_3ship, p_endpoints_for_2ship)
-      if valid_1 == true && valid_2 == true
+      valid = p_3ship_issues?(board, p_endpoints_for_3ship, p_endpoints_for_2ship)
+      if valid == true
         break
       end
     end
