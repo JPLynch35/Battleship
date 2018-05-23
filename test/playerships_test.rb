@@ -50,8 +50,8 @@ class PlayerShipsTest < Minitest::Test
 
   def test_p_check_2ship_issues_finds_length_issue
     board = Board.new
-    endpoints1 = 'A1 D1'
-    endpoints2 = 'A1 A4'
+    endpoints1 = 'A1 A3'
+    endpoints2 = 'D4 A4'
     actual1 = p_check_2ship_issues(board, endpoints1)
     actual2 = p_check_2ship_issues(board, endpoints2)
     refute actual1

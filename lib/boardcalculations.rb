@@ -28,9 +28,7 @@ module BoardCalculations
   end
 
   def check_for_sunken_3ship(sunk_flag, grid)
-    sunk_3ship = grid.values.none? do |value|
-      value == '3'
-    end
+    sunk_3ship = check_for_3s_left_on_board(grid)
     if sunk_flag == false && sunk_3ship == true
       puts sunk_the_3ship
       return true
@@ -41,10 +39,14 @@ module BoardCalculations
     end
   end
 
-  def check_for_sunken_2ship(sunk_flag, grid)
-    sunk_2ship = grid.values.none? do |value|
-      value == '2'
+  def check_for_3s_left_on_board(grid)
+    grid.values.none? do |value|
+      value == '3'
     end
+  end
+
+  def check_for_sunken_2ship(sunk_flag, grid)
+    sunk_2ship = check_for_2s_left_on_board(grid)
     if sunk_flag == false && sunk_2ship == true
       puts sunk_the_2ship
       return true
@@ -52,6 +54,12 @@ module BoardCalculations
       return true
     else
       return false
+    end
+  end
+
+  def check_for_2s_left_on_board(grid)
+    grid.values.none? do |value|
+      value == '2'
     end
   end
 

@@ -120,6 +120,43 @@ class BoardCalculationsTest < Minitest::Test
     assert actual
   end
 
+  def test_check_for_sunken_3ship_properly_flags_as_already_sunk
+    board = Board.new
+    board.set_ship(['A1', 'A2', 'A3'])
+    shot1 = 'A1'
+    shot2 = 'A2'
+    shot3 = 'A3'
+    board.check_hits(shot1, board.grid)
+    board.check_hits(shot2, board.grid)
+    board.check_hits(shot3, board.grid)
+    actual = board.check_for_sunken_3ship(true, board.grid)
+    assert actual
+  end
+
+  def test_check_for_3s_left_on_board_identifies_3s
+    board = Board.new
+    board.set_ship(['A1', 'A2', 'A3'])
+    shot1 = 'A1'
+    shot2 = 'A2'
+    board.check_hits(shot1, board.grid)
+    board.check_hits(shot2, board.grid)
+    actual = check_for_3s_left_on_board(board.grid)
+    refute actual
+  end
+
+  def test_check_for_3s_left_on_board_identifies_no_more_3s
+    board = Board.new
+    board.set_ship(['A1', 'A2', 'A3'])
+    shot1 = 'A1'
+    shot2 = 'A2'
+    shot3 = 'A3'
+    board.check_hits(shot1, board.grid)
+    board.check_hits(shot2, board.grid)
+    board.check_hits(shot3, board.grid)
+    actual = check_for_3s_left_on_board(board.grid)
+    assert actual
+  end
+
   def test_check_for_sunken_2ship_properly_flags_as_not_sunk
     board = Board.new
     board.set_ship(['A1', 'A2'])
@@ -139,6 +176,37 @@ class BoardCalculationsTest < Minitest::Test
     board.check_hits(shot1, board.grid)
     board.check_hits(shot2, board.grid)
     actual = board.check_for_sunken_2ship(false, board.grid)
+    assert actual
+  end
+
+  def test_check_for_sunken_2ship_properly_flags_as_already_sunk
+    board = Board.new
+    board.set_ship(['A1', 'A2'])
+    shot1 = 'A1'
+    shot2 = 'A2'
+    board.check_hits(shot1, board.grid)
+    board.check_hits(shot2, board.grid)
+    actual = board.check_for_sunken_2ship(true, board.grid)
+    assert actual
+  end
+
+  def test_check_for_2s_left_on_board_identifies_2s
+    board = Board.new
+    board.set_ship(['A1', 'A2'])
+    shot1 = 'A1'
+    board.check_hits(shot1, board.grid)
+    actual = check_for_2s_left_on_board(board.grid)
+    refute actual
+  end
+
+  def test_check_for_2s_left_on_board_identifies_no_more_2s
+    board = Board.new
+    board.set_ship(['A1', 'A2'])
+    shot1 = 'A1'
+    shot2 = 'A2'
+    board.check_hits(shot1, board.grid)
+    board.check_hits(shot2, board.grid)
+    actual = check_for_2s_left_on_board(board.grid)
     assert actual
   end
 
