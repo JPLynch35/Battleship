@@ -54,7 +54,7 @@ loop do
   c_sunk_p_3ship = p_board.check_for_sunken_3ship(c_sunk_p_3ship, p_board.grid)
   c_sunk_p_2ship = p_board.check_for_sunken_2ship(c_sunk_p_2ship, p_board.grid)
   p_board.game_board
-  hits = p_board.count_hits(c_board.opposing_shots)
+  hits = p_board.count_hits(p_board.opposing_shots)
   c_win = p_board.check_for_win(hits)
   if c_win == true
     puts lose
