@@ -1,7 +1,7 @@
 module PlayerShips
   def p_check_2ship_is_possible(board, endpoints)
-    first_cell = endpoints.chars[0]+endpoints.chars[1]
-    second_cell = endpoints.chars[-2]+endpoints.chars[-1]
+    first_cell = endpoints.chars[0] + endpoints.chars[1]
+    second_cell = endpoints.chars[-2] + endpoints.chars[-1]
     possible_moves = board.grid_rules_2ship[first_cell]
     possible_moves.any? do |move|
       second_cell == next_cell_for_ship(first_cell, move)
@@ -14,8 +14,8 @@ module PlayerShips
     diagonal = p_check_ship_diagonal(board, endpoints)
     valid = true
     if diagonal == true
-        puts ship_diagonal_error
-        valid = false
+      puts ship_diagonal_error
+      valid = false
     elsif wrap == true
       puts ship_wrap_error
       valid = false
