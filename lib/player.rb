@@ -58,7 +58,7 @@ class Player
       second_let = letters.include?(ship[-2])
       first_num = nums.include?(ship[1])
       second_num = nums.include?(ship[-1])
-      if first_let && second_let && first_num && second_num && ship.length == 4
+      if first_let && second_let && first_num && second_num && ship.delete(' ').length == 4
         break
       else
         puts ship_coord_not_valid
